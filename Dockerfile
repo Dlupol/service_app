@@ -1,8 +1,12 @@
 FROM python:3.9-alpine3.16
 
-WORKDIR /app
+WORKDIR /service
+
 COPY requirements.txt .
-COPY service service
+COPY service /service
+
+EXPOSE 8000
+
+RUN apk add postgresql-client build-base postgresql-dev
 
 RUN pip install -r requirements.txt
-EXPOSE 8000
